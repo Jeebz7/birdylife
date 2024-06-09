@@ -16,7 +16,7 @@ public class Plane {
     public Plane(Texture img, double speedVal)
     {
         float f = (float) Math.random();
-        position = new Vector2(Gdx.graphics.getWidth() - 100, f * Gdx.graphics.getHeight());
+        position = new Vector2(Gdx.graphics.getWidth() - 100, f * (Gdx.graphics.getHeight()-10));
         sprite = new Sprite(img);
         sprite.setScale(1);
         active = true;

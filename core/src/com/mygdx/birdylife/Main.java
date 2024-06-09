@@ -62,8 +62,9 @@ public class Main extends ApplicationAdapter {
 		if ((diffTimer < diffClock) && (diffVal <= 2000))
 		{
 			diffVal += 80;
-			planeRate *= .8;
+			planeRate *= .9;
 			diffClock = 0;
+			player.speed += 20;
 		}
 		batch.end();
 	}
