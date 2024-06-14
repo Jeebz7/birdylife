@@ -12,6 +12,7 @@ public class Plane {
     public Sprite sprite;
     public float speed;
     public boolean active;
+    public boolean touching;
 
     public Plane(Texture img, double speedVal)
     {

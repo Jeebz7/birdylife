@@ -21,7 +21,7 @@ public class Main extends ApplicationAdapter {
 	double diffTimer = 8;
 	double diffVal = 100;
 	double planeRate = 4.0;
-	int activeCount = 0;
+	double clockScore;
 	//int diffValue = 100;
 	@Override
 	public void create () {
@@ -39,33 +39,42 @@ public class Main extends ApplicationAdapter {
 		player.Draw(batch);
 		clock += Gdx.graphics.getDeltaTime();
 		diffClock += Gdx.graphics.getDeltaTime();
+		clockScore += Gdx.graphics.getDeltaTime();
 		//diffTimer += Gdx.graphics.getDeltaTime();
 		for (int i = 0; i < planes.size(); i++)
 		{
-			// if (!(planes.get(i).preUpdate(batch)))
-			// {
-			// 	planes.remove(i);
-			// }
-			// else
-			// {
+			if (planes.get(i).preUpdate(batch))
+			{
 				planes.get(i).Draw(batch);
-			// }
+				boolean xHit = planes.get(i).position.x < player.position.x + 60 && planes.get(i).position.x > player.position.x - 50;
+				boolean yHit = planes.get(i).position.y < player.position.y + 40 && planes.get(i).position.y > player.position.y - 20;
+				if (yHit && xHit)
+				{
+				System.out.println("Your score is: " + (int) clockScore);
+				Gdx.app.exit();
+				}
+			}
+			else 
+			{ 
+				planes.remove(i);
+				i--;
+			}
 		}
 		if (clock > planeRate)
 		{
 			double speed = Math.random() * diffVal + 150;
 			Plane temp = new Plane(imgPlane, speed);
 			planes.add(temp);
-			System.out.println(clock);
 			clock = 0;
 		}
 		if ((diffTimer < diffClock) && (diffVal <= 2000))
 		{
 			diffVal += 80;
-			planeRate *= .9;
+			planeRate *= .8;
 			diffClock = 0;
 			player.speed += 20;
 		}
+		
 		batch.end();
 	}
 	
