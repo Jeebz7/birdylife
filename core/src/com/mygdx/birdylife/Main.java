@@ -22,7 +22,7 @@ public class Main extends ApplicationAdapter {
 	double diffVal = 100;
 	double planeRate = 4.0;
 	double clockScore;
-	//int diffValue = 100;
+	int coinsCollected;
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
@@ -70,9 +70,10 @@ public class Main extends ApplicationAdapter {
 		if ((diffTimer < diffClock) && (diffVal <= 2000))
 		{
 			diffVal += 80;
-			planeRate *= .8;
+			planeRate *= .75;
 			diffClock = 0;
 			player.speed += 20;
+			System.out.println("Speed Increased!");
 		}
 		
 		batch.end();
